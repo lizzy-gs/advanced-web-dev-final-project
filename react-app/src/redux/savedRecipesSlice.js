@@ -23,4 +23,4 @@ export const savedRecipesSlice = createSlice({
 })
 
 export const { toggleSaveRecipe } = savedRecipesSlice.actions;
-export default savedRecipes.reducer;
+export default savedRecipesSlice.reducer;
