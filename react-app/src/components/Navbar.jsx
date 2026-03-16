@@ -15,7 +15,7 @@ export default function Navbar() {
                         <NavLink to="/search">Find Recipes</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/shopping">Saved Recipes</NavLink>
+                        <NavLink to="/recipes">Saved Recipes</NavLink>
                     </li>
                     <li>
                         <NavLink to="/shopping">Shopping List</NavLink>

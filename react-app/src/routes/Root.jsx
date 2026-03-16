@@ -1,7 +1,5 @@
-import { NavLink, Outlet } from "react-router"
-import Navbar from "./Navbar"
-import Home from "./Home"
-
+import { Outlet } from "react-router"
+import Navbar from "../components/Navbar.jsx"
 
 export default function Root(props) {
     return (
