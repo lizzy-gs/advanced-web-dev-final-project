@@ -8,6 +8,7 @@ export default function PantryForm({ onAdd }) {
         e.preventDefault();
         if (name.trim() && exp) {
             onAdd({
+                id: crypto.randomUUID(),
                 name: name.trim(),
                 expires: exp
             })

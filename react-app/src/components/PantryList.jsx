@@ -8,7 +8,7 @@ export default function PantryList({ inventory, selectedItems, onToggle, onRemov
                     const isSelected = selectedItems.includes(item.name);
 
                     return (
-                        <div key={item.name}>
+                        <div key={item.id}>
                             <div>
                                 <input
                                     type="checkbox"
