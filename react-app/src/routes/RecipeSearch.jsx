@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Spinner from "../components/Spinner";
 import ErrorContainer from "../components/ErrorContainer"
 import { fetchRecipes } from "../api/recipeByIngredients";
+import RecipeSearchResults from "../components/RecipeSearchResults";
 
 
 export default function RecipeSearch() {
@@ -34,6 +35,9 @@ export default function RecipeSearch() {
 
             {error && <ErrorContainer>Error: {error.message}</ErrorContainer>}
             {isLoading && <Spinner />}
+
+            <RecipeSearchResults
+                recipes={data} />
         </>
     )
 }

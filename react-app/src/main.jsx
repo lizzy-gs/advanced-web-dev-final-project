@@ -5,12 +5,12 @@ import './index.css'
 
 import Pantry from './routes/Pantry'
 import RecipeSearch from './routes/RecipeSearch'
-import Recipe from './routes/Recipe.jsx'
 import Shopping from './routes/Shopping.jsx'
 import Home from './routes/Home.jsx'
 import Recipes from './routes/Recipes.jsx'
 import Root from './routes/Root.jsx'
 import ErrorPage from './routes/ErrorPage.jsx'
+import RecipeDetails from './routes/RecipeDetails.jsx';
 
 import { Provider } from 'react-redux'
 import store from './redux/store'
@@ -28,9 +28,9 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       {
         path: "search", Component: RecipeSearch,
-        children: [
-          { path: ":recipe", Component: Recipe }
-        ]
+      },
+      {
+        path: "search/:recipeId", Component: RecipeDetails
       },
       {
         path: "recipes", Component: Recipes
