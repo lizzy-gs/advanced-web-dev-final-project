@@ -5,16 +5,16 @@ const initialState = {
 }
 
 export const shoppingSlice = createSlice({
-    name: "savedRecipes",
+    name: "shopping",
     initialState,
     reducers: {
         addIngredientsToList(state, action) {
-            const newIngredients = action.payload; // List of new ingredients
+            const newIngredients = action.payload;
 
             const combined = new Set([...state.list, ...newIngredients])
             state.list = Array.from(combined);
         },
-        removeIngredientsFromList(state, action) {
+        removeIngredientFromList(state, action) {
             state.list = state.list.filter(item => item !== action.payload);
         },
         clearShoppingList(state) {
