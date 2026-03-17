@@ -34,8 +34,6 @@ export default function RecipeSearch() {
 
             {error && <ErrorContainer>Error: {error.message}</ErrorContainer>}
             {isLoading && <Spinner />}
-
-
         </>
     )
 }

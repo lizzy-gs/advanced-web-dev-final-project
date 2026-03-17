@@ -10,6 +10,11 @@ export default function RecipeFilters({ onSearch, selectedIngredients }) {
 
     const handleSearch = (e) => {
         e.preventDefault()
+
+        if (selectedIngredients.length === 0) {
+            alert("Select an ingredient!")
+        }
+
         onSearch({ number, ranking, ignorePantry })
     }
 
@@ -18,7 +23,7 @@ export default function RecipeFilters({ onSearch, selectedIngredients }) {
             <h2> Search Filters </h2>
             <div>
                 <h3> Currently selected ingredients: </h3>
-                {selectedIngredients.map((i) => (
+                {selectedIngredients.length === 0 ? <p> No Ingredients Selected </p> : selectedIngredients.map((i) => (
                     <div key={i}>
                         <span>{i}</span>
                         <button
