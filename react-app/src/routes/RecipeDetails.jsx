@@ -1,11 +1,14 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import { useDispatch } from 'react-redux'
 import { fetchRecipeDetails } from '../api/recipeByIngredients'
+import { addIngredientsToList } from '../redux/shoppingSlice'
 import Spinner from '../components/Spinner'
 import ErrorContainer from '../components/ErrorContainer'
 
 export default function RecipeDetails() {
     const { recipeId } = useParams()
+    const dispatch = useDispatch()
 
     const { data: recipe, isLoading, error } = useQuery({
         queryKey: ['recipeDetails', recipeId],
@@ -13,7 +16,14 @@ export default function RecipeDetails() {
         enabled: !!recipeId
     })
 
-
+    function handleAddToShoppingList() {
+        if (recipe && recipe.extendedIngredients) {
+            const ingredientNames = recipe.extendedIngredients.map(
+                ing => ing.name
+            )
+            dispatch(addIngredientsToList(ingredientNames))
+        }
+    }
 
     if (isLoading) return <Spinner />
     if (error) return <ErrorContainer>Error: {error.message}</ErrorContainer>
@@ -41,7 +51,9 @@ export default function RecipeDetails() {
                     ))}
                 </ul>
 
-
+                <button onClick={handleAddToShoppingList}>
+                    Add Ingredients to Shopping List
+                </button>
             </div>
 
             {recipe.instructions && (
