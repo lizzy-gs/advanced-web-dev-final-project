@@ -22,7 +22,7 @@ export default function RecipeCard({ recipe }) {
                     </span>
                 </div>
 
-                <NavLink to={`/recipes/${id}`}>
+                <NavLink to={`/search/${id}`}>
                     View Recipe Details
                 </NavLink>
             </div>
