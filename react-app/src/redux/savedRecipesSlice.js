@@ -9,7 +9,7 @@ export const savedRecipesSlice = createSlice({
     initialState,
     reducers: {
         toggleSaveRecipe(state, action) {
-            const recipe = action.payload; // recipe details with an id
+            const recipe = action.payload;
 
             const exists = state.recipes.find(r => r.id === recipe.id)
 

@@ -1,7 +1,6 @@
 const API_KEY = import.meta.env.VITE_SPOONACULAR_API_KEY
 
 export const fetchRecipes = async (ingredients, searchParams) => {
-    // Encoding for multiworded ingredients
     const ingredientString = encodeURIComponent(ingredients.join(','));
 
     const url =

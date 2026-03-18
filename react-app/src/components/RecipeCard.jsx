@@ -4,29 +4,36 @@ export default function RecipeCard({ recipe }) {
     const { id, title, image, usedIngredientCount, missedIngredientCount } = recipe;
 
     return (
-        <div>
-            <img
-                src={image}
-                alt={title}
-            />
+        <div className="card overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+            <div className="aspect-video overflow-hidden">
+                <img
+                    src={image}
+                    alt={title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+            </div>
 
-            <div>
-                <h3>{title}</h3>
+            <div className="p-4">
+                <h3 className="font-semibold text-sm leading-snug mb-3 line-clamp-2">
+                    {title}
+                </h3>
 
-                <div>
-                    <span>
-                        Using {usedIngredientCount} Items!
+                <div className="flex items-center gap-2 mb-4">
+                    <span className="badge-green">
+                        ✓ {usedIngredientCount} used
                     </span>
-                    <span>
-                        Missing {missedIngredientCount} items.
+                    <span className="badge-orange">
+                        + {missedIngredientCount} missing
                     </span>
                 </div>
 
-                <NavLink to={`/search/${id}`}>
-                    View Recipe Details
+                <NavLink
+                    to={`/search/${id}`}
+                    className="btn-primary w-full text-center block text-xs py-2"
+                >
+                    View Details →
                 </NavLink>
             </div>
-
         </div>
     )
 }

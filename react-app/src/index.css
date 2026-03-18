@@ -1,1 +1,192 @@
 @import "tailwindcss";
+
+@theme {
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+    --color-primary-50: #ecfdf5;
+    --color-primary-100: #d1fae5;
+    --color-primary-200: #a7f3d0;
+    --color-primary-300: #6ee7b7;
+    --color-primary-400: #34d399;
+    --color-primary-500: #10b981;
+    --color-primary-600: #059669;
+    --color-primary-700: #047857;
+    --color-primary-800: #065f46;
+    --color-primary-900: #064e3b;
+
+    --color-accent-50: #fff7ed;
+    --color-accent-100: #ffedd5;
+    --color-accent-200: #fed7aa;
+    --color-accent-300: #fdba74;
+    --color-accent-400: #fb923c;
+    --color-accent-500: #f97316;
+    --color-accent-600: #ea580c;
+
+    --color-surface: #ffffff;
+    --color-surface-alt: #f8fafc;
+    --color-surface-hover: #f1f5f9;
+    --color-border: #e2e8f0;
+    --color-border-strong: #cbd5e1;
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-muted: #94a3b8;
+    --color-danger: #ef4444;
+    --color-danger-light: #fef2f2;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        background-color: var(--color-surface-alt);
+        color: var(--color-text-primary);
+        line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+        font-weight: 700;
+        line-height: 1.25;
+        color: var(--color-text-primary);
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+}
+
+@utility btn-primary {
+    background-color: var(--color-primary-600);
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 0.875rem;
+    &:hover {
+        background-color: var(--color-primary-700);
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    }
+}
+
+@utility btn-danger {
+    background-color: white;
+    color: var(--color-danger);
+    font-weight: 600;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 0.8rem;
+    &:hover {
+        background-color: var(--color-danger-light);
+        border-color: var(--color-danger);
+    }
+}
+
+@utility btn-secondary {
+    background-color: white;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 0.875rem;
+    &:hover {
+        background-color: var(--color-surface-hover);
+        border-color: var(--color-border-strong);
+    }
+}
+
+@utility card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+}
+
+@utility badge-green {
+    background-color: var(--color-primary-50);
+    color: var(--color-primary-700);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+}
+
+@utility badge-red {
+    background-color: var(--color-danger-light);
+    color: var(--color-danger);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+}
+
+@utility badge-orange {
+    background-color: var(--color-accent-50);
+    color: var(--color-accent-600);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+}
+
+@utility chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background-color: var(--color-primary-50);
+    color: var(--color-primary-700);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-primary-200);
+}
+
+@utility input-field {
+    background-color: white;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    &:focus {
+        border-color: var(--color-primary-400);
+        box-shadow: 0 0 0 3px rgb(16 185 129 / 0.1);
+    }
+    &::placeholder {
+        color: var(--color-text-muted);
+    }
+}
+
+@utility page-container {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 1.5rem;
+}
+
+@utility page-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+}
+
+@utility empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    color: var(--color-text-muted);
+}
