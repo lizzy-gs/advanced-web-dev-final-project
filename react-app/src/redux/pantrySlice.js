@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     inventory: [
-        { id: 1, name: "Chicken Breast", expires: "2026-03-25" }, // test ingredients
+        { id: 1, name: "Chicken Breast", expires: "2026-03-25" },
         { id: 2, name: "Spinach", expires: "2026-03-20" },
         { id: 3, name: "Milk", expires: "2026-03-18" },
         { id: 4, name: "Milk", expires: "2026-03-30" },
         { id: 5, name: "Greek Yogurt", expires: "2026-01-10" }
-    ], // entire ingredients
-    selectedItems: [] // ingredient names
+    ],
+    selectedItems: []
 }
 
 export const pantrySlice = createSlice({
@@ -27,7 +27,7 @@ export const pantrySlice = createSlice({
             state.inventory = state.inventory.filter(item => item.name !== itemToRemove.name || item.expires !== itemToRemove.expires)
         },
         toggleIngredient(state, action) {
-            const ingredient = action.payload; // ingredient name
+            const ingredient = action.payload;
 
             if (state.selectedItems.includes(ingredient)) {
                 state.selectedItems = state.selectedItems.filter(item => item !== ingredient);

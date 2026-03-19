@@ -23,21 +23,24 @@ export default function RecipeSearch() {
         enabled: selectedIngredients.length > 0,
     })
 
-    console.log("data== ", data)
-
     return (
-        <>
-            Search for a Recipe
+        <div>
+            <h1 className="page-title">🔍 Find Recipes</h1>
 
-            <RecipeFilters
-                onSearch={(newParams) => setSearchParams(newParams)}
-                selectedIngredients={selectedIngredients} />
+            <div className="card p-5 mb-6">
+                <RecipeFilters
+                    onSearch={(newParams) => setSearchParams(newParams)}
+                    selectedIngredients={selectedIngredients} />
+            </div>
 
             {error && <ErrorContainer>Error: {error.message}</ErrorContainer>}
-            {isLoading && <Spinner />}
+            {isLoading && (
+                <div className="py-12">
+                    <Spinner />
+                </div>
+            )}
 
-            <RecipeSearchResults
-                recipes={data} />
-        </>
+            <RecipeSearchResults recipes={data} />
+        </div>
     )
 }
