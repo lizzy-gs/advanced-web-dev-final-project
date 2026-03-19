@@ -3,12 +3,15 @@ import { useQuery } from '@tanstack/react-query'
 import { useDispatch } from 'react-redux'
 import { fetchRecipeDetails } from '../api/recipeByIngredients'
 import { addIngredientsToList } from '../redux/shoppingSlice'
+import { toggleSaveRecipe } from '../redux/savedRecipesSlice'
 import Spinner from '../components/Spinner'
 import ErrorContainer from '../components/ErrorContainer'
+import { useSelector } from 'react-redux'
 
 export default function RecipeDetails() {
     const { recipeId } = useParams()
     const dispatch = useDispatch()
+    const savedRecipes = useSelector((state) => state.savedRecipes.recipes)
 
     const { data: recipe, isLoading, error } = useQuery({
         queryKey: ['recipeDetails', recipeId],
@@ -23,6 +26,10 @@ export default function RecipeDetails() {
             )
             dispatch(addIngredientsToList(ingredientNames))
         }
+    }
+
+    function isRecipeSaved(recipeId) {
+        return savedRecipes.some(recipe => recipe.id === recipeId);
     }
 
     if (isLoading) return (
@@ -47,13 +54,32 @@ export default function RecipeDetails() {
                 {recipe.title}
             </h1>
 
-            <div className="flex flex-wrap gap-3 mb-6">
-                <span className="badge-green flex items-center gap-1 text-sm px-3 py-1">
-                    ⏱️ {recipe.readyInMinutes} min
-                </span>
-                <span className="badge-orange flex items-center gap-1 text-sm px-3 py-1">
-                    🍽️ {recipe.servings} servings
-                </span>
+            <div className="flex justify-between">
+                <div className="flex flex-wrap gap-3 mb-6">
+                    <span className="badge-green flex items-center gap-1 text-sm px-3 py-1">
+                        ⏱️ {recipe.readyInMinutes} min
+                    </span>
+                    <span className="badge-orange flex items-center gap-1 text-sm px-3 py-1">
+                        🍽️ {recipe.servings} servings
+                    </span>
+                </div>
+                <div>
+                    {isRecipeSaved(recipe.id) ? (
+                        <button
+                            onClick={() => dispatch(toggleSaveRecipe(recipe))}
+                            className="btn-secondary text-xs"
+                        >
+                            💔 Unsave Recipe
+                        </button>
+                    ) : (
+                        <button
+                            onClick={() => dispatch(toggleSaveRecipe(recipe))}
+                            className="btn-primary text-xs"
+                        >
+                            ❤️ Save Recipe
+                        </button>
+                    )}
+                </div>
             </div>
 
             <div className="card p-5 mb-6">

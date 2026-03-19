@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleSaveRecipe } from '../redux/savedRecipesSlice'
 
 export default function Recipes() {
     const savedRecipes = useSelector((state) => state.savedRecipes.recipes)
+    const dispatch = useDispatch()
 
     return (
         <div>
@@ -23,11 +25,16 @@ export default function Recipes() {
                                 <img
                                     src={recipe.image}
                                     alt={recipe.title}
-                                    className="w-full h-40 object-cover"
-                                />
+                                    className="w-full h-40 object-cover" />
                             )}
-                            <div className="p-4">
+                            <div className="flex justify-between p-4">
                                 <h3 className="font-semibold text-sm mb-2">{recipe.title}</h3>
+                                <button
+                                    onClick={() => dispatch(toggleSaveRecipe(recipe))}
+                                    className="text-primary-400 hover:text-primary-700 transition-colors font-bold"
+                                >
+                                    ✕
+                                </button>
                             </div>
                         </div>
                     ))}
